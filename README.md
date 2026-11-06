@@ -1,5 +1,4 @@
-**ES** · Dashboard de riesgo de crédito sobre la fintech ficticia de este repo. Datos: `data/csv/` (si no existen, corre `python python/generar_datos.py` y `python python/exportar_csv.py`). Todo el DAX está en [`medidas.dax`](medidas.dax).
-
+**ES** · Dashboard de riesgo de crédito sobre la fintech ficticia de este repo. 
 ## 1. Cargar los datos
 *Inicio → Obtener datos → Texto/CSV* y carga los 5 archivos de `data/csv/`: `clientes`, `solicitudes`, `prestamos`, `pagos`, `cartera_cierre`. Usa **Transformar datos**, no *Cargar*.
 
