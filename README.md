@@ -2,7 +2,7 @@
 
 ### Ingeniería de producción en la teoría, datos en la práctica.
 
-📍 Bogotá, Colombia · 💼 Remoto o híbrido · 🗣️ Español nativo, inglés profesional (trabajo diario con equipos en EE. UU.) ·
+📍 Bogotá, Colombia · 💼 Presencial, híbrido o remoto · 🗣️ Español nativo, inglés profesional (trabajo diario con equipos en EE. UU.) ·
 📫 [LinkedIn](https://www.linkedin.com/in/javier-daza-5201b1176/) · [Correo](mailto:javier.m.daza.p@gmail.com) · [Portafolio](https://javierdataanalyst.github.io/Issues-and-solutions/)
 
 **Ingeniero de Producción** (Universidad Distrital) que construye **pipelines de datos confiables, modelos dimensionales y
@@ -18,7 +18,7 @@ las **industrias físicas**: energía, manufactura, logística, agroindustria y 
 
 | Roles | Sectores | Modalidad |
 |---|---|---|
-| Analytics Engineer · Data Engineer · BI Analyst / Developer | Energía · Manufactura · Logística y supply chain · Agroindustria · Construcción | Remoto o híbrido en Bogotá |
+| Analytics Engineer · Data Engineer · BI Analyst / Developer | Energía · Manufactura · Logística y supply chain · Agroindustria · Construcción | Presencial, híbrido o remoto (Bogotá) |
 
 ---
 
