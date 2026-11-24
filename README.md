@@ -40,6 +40,24 @@ Analista de datos y BI para financieras de Puerto Rico y Colombia, en remoto des
 
 ---
 
+## 🧠 Lo que la IA no reemplaza: criterio
+
+La IA ya escribe SQL y arma tableros. Lo que aporto es lo que pasa **antes y después** del tablero:
+
+| Lo que hago | Un ejemplo real |
+|---|---|
+| **Entender el proceso que genera el dato** | Al construir el motor de mora detecté que las fotos diarias repetidas de la cartera inflaban las tasas, y lo corregí desde el origen. |
+| **Decidir si una cifra es confiable** | En un reporte para el banco encontré una prueba que nunca podía fallar: solo promediaba los préstamos que ya cumplían. La llevé a gerencia antes de corregirla. |
+| **Traducir entre negocio y datos** | Respondo a bancos e inversionistas con cifras que ellos mismos pueden recalcular desde la fuente. |
+| **Diseñar sistemas con controles** | Mis flujos se detienen solos si una cifra no cuadra contra la fuente o si aparece un dato personal donde no debe. |
+
+**Cómo presento un análisis:** como un memo de decisión, no como un tablero suelto.
+
+> **Problema** → qué decisión está en juego · **Opciones** → qué se puede hacer · **Recomendación** → qué haría y por qué ·
+> **Evidencia** → las cifras que lo sostienen y cómo verificarlas.
+
+---
+
 ## 🧰 Herramientas
 
 `SQL` (PostgreSQL, SQL Server, MySQL) · `Python` (pandas, APIs) · `Power BI` (DAX, Power Query) · `Excel avanzado` ·
