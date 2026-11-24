@@ -1,59 +1,84 @@
-**ES** · Dashboard de riesgo de crédito sobre la fintech ficticia de este repo. 
-## 1. Cargar los datos
-*Inicio → Obtener datos → Texto/CSV* y carga los 5 archivos de `data/csv/`: `clientes`, `solicitudes`, `prestamos`, `pagos`, `cartera_cierre`. Usa **Transformar datos**, no *Cargar*.
+# Hola, soy Javier Daza 👋
 
-## 2. Limpiar en Power Query (los datos traen errores a propósito)
-| Tabla | Paso | Cómo comprobarlo |
-|---|---|---|
-| Todas | Tipos: columnas `fecha_*` → Fecha; `monto`, `saldo`, `valor` → Número entero; `tasa_ea` → Decimal | Sin errores en la vista previa |
-| `clientes` | `ciudad` → *Reemplazar valores* `Bogotá D.C.` → `Bogotá` | |
-| `clientes` | `ciudad` → *Transformar → Formato → Recortar* y luego *Poner en mayúsculas cada palabra* | |
-| `clientes` | *Reemplazar valores* (opciones avanzadas: *Coincidir con el contenido de toda la celda*): `Bogota` → `Bogotá`; `Medellin` → `Medellín`; `Barranquila` → `Barranquilla` | Filtro de la columna: solo 6 valores |
-| `pagos` | Selecciona todas las columnas → *Quitar filas → Quitar duplicados* | 2,129 → **2,099** filas |
-| `prestamos` | *Combinar consultas* con `solicitudes` por `solicitud_id` (externa izquierda) y expande solo `canal` | Columna `canal` sin vacíos |
+### Ingeniería de producción en la teoría, datos en la práctica.
 
-Cierra y aplica.
-
-## 3. Modelo
-1. *Modelado → Nueva tabla*: crea `Calendario` y `Canal` con el DAX de `medidas.dax`. Marca `Calendario` como tabla de fechas.
-2. En `prestamos`, *Nueva columna*: `Tipo de credito`.
-3. Relaciones (vista de modelo), todas de uno a varios y en una sola dirección:
-   - `Calendario[Date]` → `prestamos[fecha_desembolso]` y → `solicitudes[fecha_solicitud]`
-   - `Canal[canal]` → `prestamos[canal]` y → `solicitudes[canal]`
-   - `clientes[cliente_id]` → `prestamos[cliente_id]` y → `solicitudes[cliente_id]`
-   - `prestamos[prestamo_id]` → `cartera_cierre[prestamo_id]` y → `pagos[prestamo_id]`
-   - **No** relaciones `solicitudes` con `prestamos`: el canal ya está en `prestamos`.
-
-## 4. Medidas
-Crea cada medida de `medidas.dax` con *Inicio → Nueva medida*, una por una. Formato: montos sin decimales; tasas y `% Mora 30+` como porcentaje con 1 decimal.
-
-## 5. Página "Riesgo de crédito"
-- **Título con la conclusión:** "WhatsApp trae volumen, pero su cosecha de abril tiene 1.6× más mora".
-- **4 tarjetas:** Monto desembolsado · Número de préstamos · Tasa de aprobación · % Mora 30+.
-- **Líneas:** Tasa de aprobación por `Calendario[Mes]`, leyenda `Canal[canal]`.
-- **Columnas:** Monto desembolsado por `Calendario[Mes]`, leyenda `Canal[canal]`.
-- **Matriz:** filas `Calendario[Mes]` (cosecha), columnas `Canal[canal]`, valor `% Mora 30+` con escala de color de fondo; agrega `Cosecha madura` como valor o en la información sobre herramientas.
-- **Segmentadores:** `clientes[ciudad]`, `Canal[canal]`, `prestamos[Tipo de credito]`.
-- **Colores:** Web `#0B8A7E`, App `#4F46E5`, WhatsApp `#D97706`.
-
-## 6. Cifras de control (si no te dan, algo del modelo está mal)
-| Medida | Valor esperado |
-|---|---|
-| Monto desembolsado | 688,900,000 |
-| Número de préstamos | 2,219 |
-| Tasa de aprobación (total) | 54.6 % |
-| Tasa de aprobación, abril | 50.7 % |
-| % Mora 30+ (total) | 5.5 % |
-| % Mora 30+ cosecha abril: Web / App / WhatsApp | 7.6 % / 7.3 % / 12.3 % |
-| Variación mensual, junio | 12.7 % |
-| Filas de `pagos` tras quitar duplicados | 2,099 |
-
-## 7. Capturas
-Guarda en esta carpeta, en PNG de unos 1600 px de ancho:
-- `01_dashboard.png`: la página completa.
-- `02_modelo.png`: la vista de modelo con las relaciones.
-- `03_mora_cosecha.png`: la matriz de mora 30+ por cosecha y canal.
+Pienso los datos como pienso una planta: **entradas, procesos, controles de calidad y salidas que alguien usa para decidir**.
+Soy **Ingeniero de Producción egresado de la Universidad Distrital Francisco José de Caldas** y hoy trabajo como
+analista de datos y BI. Mi objetivo es llevar esa combinación a las **industrias físicas** —manufactura, logística,
+energía, agroindustria y construcción— donde la **Industria 4.0** necesita personas que entiendan tanto el proceso
+como el dato.
 
 ---
 
-**EN** · Credit-risk dashboard on this repo's fictional fintech. Load the five CSVs from `data/csv/`, clean them in Power Query (types, 6 normalized cities, remove duplicate payments, merge `canal` into `prestamos`), build the star schema above, paste the measures from `medidas.dax` one by one, and check the control figures in section 6.
+## 🏭 Por qué industrias físicas
+
+La IA está volviendo rutinaria la reportería descriptiva. Lo que no se automatiza fácil es **entender el proceso que
+genera el dato**: por qué se detiene una línea, dónde se acumula inventario, qué hace que una entrega llegue tarde.
+Ahí la ingeniería de producción y los datos se encuentran.
+
+| Lo que estudié | Cómo lo aplico en datos |
+|---|---|
+| Control estadístico de calidad y control de procesos | Validaciones que detienen un flujo cuando una cifra no cuadra |
+| Planeación de la producción y diseño de procesos | Pipelines automatizados que eliminan pasos manuales y cuellos de botella |
+| Gestión de calidad | Una sola fuente de verdad, sin duplicados ni definiciones distintas |
+| Diseño de experimentos y modelos estocásticos | Comparar antes y después con método, no con intuición |
+| Programación lineal y simulación | Modelos para decidir con recursos limitados |
+
+**Temas que quiero llevar a planta:** eficiencia de equipos (OEE), mantenimiento predictivo, planeación de demanda e
+inventarios, trazabilidad de la cadena de suministro y consumo de energía.
+
+---
+
+## 📊 Lo que hago hoy
+
+Analista de datos y BI para financieras de Puerto Rico y Colombia, en remoto desde Bogotá.
+
+- **Fuente única de verdad:** uní dos sistemas de préstamos en un solo modelo, sin duplicados.
+- **Reportes que se pueden auditar:** el informe mensual al banco se recalcula desde la fuente y cada cifra se puede comprobar.
+- **Automatización:** procesos diarios con Python y GitHub Actions que antes se hacían a mano.
+- **Más de 30 tableros** para finanzas, operaciones, ventas y marketing, y una base de **más de 500.000 clientes** unificada sin contactos duplicados.
+
+---
+
+## 🧰 Herramientas
+
+`SQL` (PostgreSQL, SQL Server, MySQL) · `Python` (pandas, APIs) · `Power BI` (DAX, Power Query) · `Excel avanzado` ·
+`Modelado dimensional` · `GitHub Actions` · `Supabase` · `n8n` · `IA aplicada con controles`
+
+**Aprendiendo ahora:** ingeniería de datos en AWS (S3, Glue, Athena, Lambda), analytics engineering e inglés a nivel C1.
+
+---
+
+## 📁 Proyectos
+
+| Proyecto | Qué es |
+|---|---|
+| [Portafolio y hoja de vida](https://javierdataanalyst.github.io/Issues-and-solutions/) | Proyectos reales descritos sin datos sensibles, demos con datos ficticios, SQL y Power BI. |
+| [Guía de agentes de IA](https://javierdataanalyst.github.io/Agentes-de-IA/) | Guía educativa en español, paso a paso, con ejercicios y tarjetas de repaso. |
+
+---
+
+## 🎓 Formación
+
+**Ingeniero de Producción** · Universidad Distrital Francisco José de Caldas (ciclo propedéutico: Tecnología en
+Gestión de la Producción Industrial → Ingeniería de Producción).
+
+| Área | Asignaturas |
+|---|---|
+| Calidad y procesos | Control estadístico de calidad · Gestión de calidad · Control de procesos · Diseño de experimentos · Procesos industriales |
+| Operaciones | Planeación de la producción · Logística integral · Mantenimiento industrial · Automatización · Sistemas flexibles de manufactura · Dirección de producción |
+| Modelos y decisión | Programación lineal · Modelos determinísticos y estocásticos de producción · Simulación · Estadística y probabilidades |
+| Costos y proyectos | Costos de producción · Ingeniería económica · Formulación y evaluación de proyectos |
+
+---
+
+## 📫 Contacto
+
+[LinkedIn](https://www.linkedin.com/in/javier-daza-5201b1176/) · [Correo](mailto:javier.m.daza.p@gmail.com) ·
+[Portafolio](https://javierdataanalyst.github.io/Issues-and-solutions/)
+
+---
+
+**EN** · Production engineering in theory, data in practice. BI and data analyst with a production-engineering
+background, bringing process thinking and data to physical industries: manufacturing, logistics, energy, agribusiness
+and construction (Industry 4.0). SQL, Python, Power BI and automation, with every figure validated against its source.
