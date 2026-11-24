@@ -71,6 +71,7 @@ La IA ya escribe SQL y arma tableros. Lo que aporto es lo que pasa **antes y des
 
 | Proyecto | Qué es |
 |---|---|
+| ⚡ [Colombia Energy Analytics](https://javierdataanalyst.github.io/Colombia-energy-analytics/) ([código](https://github.com/JavierDataAnalyst/Colombia-energy-analytics)) | **Qué mueve el precio de la energía en Colombia.** Datos públicos de XM (11 millones de registros, 2023–2026), modelo estrella en dbt y 16 pruebas de datos. Hallazgo: el precio de bolsa sigue a las lluvias, no al nivel de los embalses; en meses secos cuesta unas 3 veces más. |
 | [Portafolio y hoja de vida](https://javierdataanalyst.github.io/Issues-and-solutions/) | Proyectos reales descritos sin datos sensibles, demos con datos ficticios, SQL y Power BI. |
 | [Guía de agentes de IA](https://javierdataanalyst.github.io/Agentes-de-IA/) | Guía educativa en español, paso a paso, con ejercicios y tarjetas de repaso. |
 
